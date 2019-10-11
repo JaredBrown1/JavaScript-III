@@ -21,9 +21,16 @@ function GameObject(attrs){
   this.dimensions = attrs.dimensions;
 }
 
-GameObject.prototype.destroy = function(){`${this.name} was removed from the game.`}
+GameObject.prototype.destroy = function(){return `${this.name} was removed from the game.`}
 
-
+// -------an option------------
+// function GameObject(attrs) {
+//   this.createdAt = attrs.createdAt;
+//   this.name = attrs.name;
+//   this.dimensions = attrs.dimensions;
+// }
+// GameObject.prototype.destroy = function() { return `${this.name} was removed from the game.` };
+//----------------------------------
 /*
   === CharacterStats ===
   * healthPoints
@@ -35,8 +42,10 @@ function CharacterStats(attrs){
   this.healthPoints = attrs.healthPoints;
   GameObject.call(this,attrs);
 }
-CharacterStats.prototype.takeDamage = function(){`${this.name} took damage.`};
+
 CharacterStats.prototype = Object.create(GameObject.prototype);
+CharacterStats.prototype.takeDamage = function(){return `${this.name} took damage.`};
+
 /*
   === Humanoid (Having an appearance or character resembling that of a human.) ===
   * team
@@ -53,9 +62,10 @@ function Humanoid(attrs){
   this.language = attrs.language;
   CharacterStats.call(this,attrs);
 }
- 
-Humanoid.prototype.greet = function(){`${this.name} offers a greeting in ${this.language}`};
+
 Humanoid.prototype = Object.create(CharacterStats.prototype);
+Humanoid.prototype.greet = function(){return `${this.name} offers a greeting in ${this.language}`};
+
 
 
 /*
